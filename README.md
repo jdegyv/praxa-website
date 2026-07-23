@@ -26,9 +26,11 @@ python3 -m http.server 8137   # then open http://localhost:8137/
 ## Assets & how to regenerate them
 
 - **Favicons / touch icon** (`favicon-16.png`, `favicon-32.png`, `apple-touch-icon.png`)
-  are downscaled from the app icon. Regenerate if the app icon changes:
+  are downscaled from the real Praxa app icon (the flattened "stone" icon —
+  **not** `assets/images/icon.png`, which is a leftover placeholder). Regenerate if
+  the icon changes:
   ```bash
-  ICON=../app_demo_1/assets/images/icon.png   # adjust path
+  ICON=../app_demo_1/assets/icon-source/praxa-icon-flat-1024.png   # adjust path
   sips -z 180 180 "$ICON" --out apple-touch-icon.png
   sips -z 32 32 "$ICON" --out favicon-32.png
   sips -z 16 16 "$ICON" --out favicon-16.png
