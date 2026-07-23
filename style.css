@@ -1,0 +1,265 @@
+/* Praxa — shared stylesheet.
+   Design tokens first (palette + type), then a small mobile-first layout.
+   No framework, no JS. Apple system fonts via CSS generics: New York (serif)
+   for titles, San Francisco (sans) for everything else, with graceful
+   fallbacks on non-Apple platforms. */
+
+:root {
+  --font-serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, ui-sans-serif, "SF Pro Text",
+    system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Light (default): ivory paper, near-black ink. */
+  --bg: #f5f1e8;
+  --text: #1a1a1a;
+  --text-muted: #6b675e;
+  --rule: #e2ddd0;
+  --focus: #1a1a1a;
+
+  --measure: 34rem; /* readable line length */
+  --space: clamp(1.25rem, 4vw, 2rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark: charcoal, ivory ink (slightly softened so it doesn't vibrate). */
+    --bg: #141414;
+    --text: #ece7db;
+    --text-muted: #9a958a;
+    --rule: #2c2c2c;
+    --focus: #ece7db;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Shared page frame */
+.wrap {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+/* Site header (small wordmark that links home on interior pages) */
+.site-head {
+  padding-block: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.site-head a {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-head a:hover {
+  text-decoration: underline;
+}
+
+/* Main content grows to push the footer down */
+main {
+  flex: 1 0 auto;
+  padding-block: clamp(1rem, 4vw, 2rem);
+}
+
+/* ---- Landing hero ---- */
+.hero {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(3rem, 14vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.hero .tagline {
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.hero .lede {
+  max-width: 30rem;
+  margin: 1.25rem auto 0;
+  color: var(--text);
+}
+
+.hero .cta {
+  margin-top: 2rem;
+}
+
+/* Official Apple badge — fixed height per Apple's guidelines, unmodified art. */
+.badge {
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.badge img {
+  height: 52px;
+  width: auto;
+  display: block;
+}
+
+.badge:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+/* ---- Prose (privacy policy) ---- */
+.prose h1 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2rem, 8vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.25rem;
+}
+
+.prose .effective {
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 0;
+}
+
+.prose h2 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  margin: 2.5rem 0 0.5rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--text);
+}
+
+.prose ul {
+  padding-left: 1.25rem;
+}
+
+.prose li {
+  margin-block: 0.35rem;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+/* ---- About placeholder ---- */
+.centered {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.centered h1 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 7vw, 2.5rem);
+  margin: 0;
+}
+
+.centered p {
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ---- Links: never color-only. Underlined by default (monochrome palette). ---- */
+a {
+  color: var(--text);
+}
+
+.prose a,
+.footer-links a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+
+.prose a:hover,
+.footer-links a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* ---- Footer ---- */
+.site-foot {
+  flex-shrink: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(3rem, 10vw, 5rem);
+  padding-block: 2rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.site-foot .footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.copyright {
+  white-space: nowrap;
+}
+
+/* ---- Focus + motion ---- */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
