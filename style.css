@@ -112,14 +112,32 @@ main {
   margin: 0;
 }
 
+/* Left-aligned inside a centered hero: the block is multi-paragraph, and
+   centered body text gets hard to scan past a couple of lines. */
 .hero .lede {
   max-width: 30rem;
   margin: 1.25rem auto 0;
   color: var(--text);
+  text-align: left;
+}
+
+.hero .lede p {
+  margin: 0 0 1rem;
+}
+
+.hero .lede p:last-child {
+  margin-bottom: 0;
 }
 
 .hero .cta {
   margin-top: 2rem;
+}
+
+/* Plain-language line under the badge — the one place the page says, in the
+   familiar term, what Praxa is. Centered even though the lede is flush-left. */
+.hero .cta-note {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
 }
 
 /* Official Apple badge — fixed height per Apple's guidelines, unmodified art. */
