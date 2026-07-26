@@ -10,7 +10,15 @@ build step, no JavaScript. Hosted on **GitHub Pages** behind the Porkbun domain
 | --- | --- |
 | `praxa.page/` | `index.html` — landing hero |
 | `praxa.page/privacy` | `privacy/index.html` — privacy policy |
+| `praxa.page/contact` | `contact/index.html` — support page (App Store Support URL) |
 | `praxa.page/about` | `about/index.html` — placeholder |
+
+`/contact` is the **Support URL** on the App Store Connect record, so it has to stay
+reachable. It is deliberately static — a `mailto:` plus instructions, no form: GitHub
+Pages can't process a POST, and a third-party form backend would be a new data
+processor the privacy policy doesn't disclose. The contact address
+(`praxa.app@gmail.com`) must match the one in the privacy policy and in App Store
+Connect.
 
 The privacy policy content is the HTML twin of `app_demo_1/docs/legal/privacy-policy.md`.
 **If you edit the policy, update both.**
