@@ -89,6 +89,9 @@ main {
 
 /* ---- Landing hero ---- */
 .hero {
+  /* Margin, not padding: min-height is border-box, so padding here would be
+     absorbed by the box and shift the wordmark down by less than asked. */
+  margin-top: 15px;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
@@ -130,7 +133,7 @@ main {
 }
 
 .hero .cta {
-  margin-top: 2rem;
+  margin-top: calc(2rem + 15px);
 }
 
 /* Plain-language line under the badge — the one place the page says, in the
